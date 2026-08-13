@@ -1,5 +1,5 @@
 ---
-name: OS-Assignment-filesystem
+name: OS-assignment-filesystem
 description: Read, run, change permissions on, compress, present, and manage authorized local files and directories through single-purpose Python command-line helpers. Use when an LLM or Codex task needs to create, open, read, write, run, close, delete, truncate, or chmod a file; launch a local executable as a child process; list, search, compress, rename, or move a directory or filesystem entry; serve SKILL.md through a local Python HTTP server for submission; read selected lines; or handle a known text encoding.
 ---
 

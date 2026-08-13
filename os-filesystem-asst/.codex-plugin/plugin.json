@@ -1,0 +1,38 @@
+{
+  "name": "os-filesystem",
+  "version": "0.1.0",
+  "description": "Read, run, change permissions on, compress, present, and manage authorized local files and directories through Python helpers.",
+  "author": {
+    "name": "arctic-cheetah",
+    "url": "https://github.com/arctic-cheetah"
+  },
+  "homepage": "https://github.com/arctic-cheetah/GPT-FileSystem-Skill",
+  "repository": "https://github.com/arctic-cheetah/GPT-FileSystem-Skill",
+  "license": "MIT",
+  "keywords": [
+    "filesystem",
+    "files",
+    "local-files",
+    "automation"
+  ],
+  "skills": "./skills",
+  "interface": {
+    "displayName": "OS Filesystem",
+    "shortDescription": "Manage authorized local files and directories with Python helpers.",
+    "longDescription": "Provides a filesystem skill for reading, writing, running, compressing, searching, renaming, moving, chmodding, and otherwise managing authorized local files and directories through single-purpose Python command-line helpers.",
+    "developerName": "arctic-cheetah",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Interactive"
+    ],
+    "websiteURL": "https://github.com/arctic-cheetah/GPT-FileSystem-Skill",
+    "defaultPrompt": [
+      "Read a local file with os-filesystem.",
+      "List an authorized directory.",
+      "Search files in an authorized folder."
+    ],
+    "brandColor": "#2563EB"
+  }
+}

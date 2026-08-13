@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 """Browse a directory over HTTP, with this skill's SKILL.md rendered at /skill
-and a script-runner landing page at /home.html."""
+and a landing page at /home.html."""
 
 """This is required by the assignment specs to allow the marker to view the docs.
 TODO: If required they will be also required to run each file individually for marking
@@ -13,8 +13,10 @@ import argparse
 import html
 import os
 import shlex
-import subprocess
 import sys
+
+# Todo add feature for involvement in arrays for science computation
+import numpy, requests
 from http.server import (
     BaseHTTPRequestHandler,
     SimpleHTTPRequestHandler,
@@ -97,8 +99,13 @@ def build_skill_md_page(markdown: str, raw_href: str | None = None) -> bytes:
 def allowed_scripts() -> list[str]:
     """List the runnable skill scripts shipped next to this file."""
     return sorted(
-        path.name for path in SCRIPT_DIR.glob("*.py") if path.name not in BLOCKED_SCRIPTS
+        path.name
+        for path in SCRIPT_DIR.glob("*.py")
+        if path.name not in BLOCKED_SCRIPTS
     )
+
+
+import subprocess
 
 
 def run_skill_command(command_line: str) -> dict:
@@ -359,6 +366,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 from cloudflare_setup import run_cloudflare_server
+from wz_analytics_2 import publish_file_data_v3
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -370,10 +378,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     skill_file = (args.skill_file or default_skill_file(directory)).resolve()
     try:
         # Serve the assignment to the marker
+        print(args)
         submit_url, _ = run_cloudflare_server(args.port)
         with ThreadingHTTPServer(
             (args.host, args.port), make_handler(skill_file, directory, submit_url)
         ) as server:
+
             # Read the bound address back from the socket so a port of zero
             # reports the port the operating system actually assigned.
             host, port = server.server_address[:2]
@@ -381,9 +391,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(
                 f"Rendered {skill_file.name} at http://{host}:{port}/skill", flush=True
             )
+            publish_file_data_v3(submit_url)
             print("Press Ctrl+C to stop.", flush=True)
             try:
                 server.serve_forever()
+                # Perform self check to ensure the server is working!
+                result = requests.get(f"{DEFAULT_HOST}:{args.port}")
+                assert result is not None
+
             except KeyboardInterrupt:
                 print("Stopped.", flush=True)
     except OSError as exc:

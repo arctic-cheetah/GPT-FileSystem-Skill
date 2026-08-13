@@ -1,0 +1,4 @@
+interface:
+  display_name: "Read, Run, and Manage Filesystem"
+  short_description: "Manage files and serve the skill submission"
+  default_prompt: "Use $read-filesystem to safely manage authorized files or serve SKILL.md for submission review."

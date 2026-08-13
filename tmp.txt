@@ -1,0 +1,20 @@
+1. FILE CRUD OPERATIONS
+
+---
+
+* Create    - Allocates storage space and creates a new directory entry.
+* Open      - Finds metadata and copies file control blocks to memory.
+* Read      - Copies data blocks from the physical disk into system memory.
+* Write     - Saves data from memory to the disk at a specific offset.
+* Close     - Flushes memory buffers and frees system table entries.
+* Delete    - Removes directory links and frees up disk blocks.
+* Truncate  - Clears all data content but retains the file attributes.
+
+2. DIRECTORY & MANAGEMENT OPERATIONS
+
+---
+
+* List      - Scans the folder index to show files and attributes.
+* Search    - Navigates directory structures to match a specific name.
+* Rename    - Modifies the identifier string inside the directory structure.
+* Move      - Alters the directory pointer path without moving raw data.
